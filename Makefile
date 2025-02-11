@@ -1,4 +1,4 @@
-CC = cc
+CC = cc 
 
 CFLAGS = -Wall -Wextra -Werror
 
@@ -12,7 +12,7 @@ LIBFT = libft.a
 
 OBJ_FILES = $(SRC:.c=.o)
 
-NAME = push_swap.out
+NAME = push_swap
 
 all: $(NAME)
 

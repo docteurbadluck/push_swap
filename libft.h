@@ -6,7 +6,7 @@
 /*   By: tdeliot <tdeliot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:00:38 by tdeliot           #+#    #+#             */
-/*   Updated: 2024/11/21 11:30:14 by tdeliot          ###   ########.fr       */
+/*   Updated: 2025/01/14 16:23:15 by tdeliot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <stdint.h>
 # include <errno.h>
 # include <stdarg.h>
-
 
 typedef struct s_list
 {
@@ -70,27 +69,20 @@ t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 int		ft_lstsize(t_list *lst);
-
 extern int		g_count;
-
 //ft_printf_utils
 void	ft_putnbr(int n);
 void	ft_putnbr_u(unsigned int n);
-void    ft_putnbr_to_hex_maj(unsigned int n);
+void	ft_putnbr_to_hex_maj(unsigned int n);
 void	ft_putnbr_to_hex_min(unsigned int n);
 
 //ft_printf_utils_2
 void	ft_putchar(char c);
 void	ft_putstr( char *s);
 void	ft_put_ptr(unsigned long long num);
-void    ft_putptr(unsigned long long ptr);
-
-
+void	ft_putptr(unsigned long long ptr);
 
 //ft_printf.c
 void	ft_manage_arg(char c, va_list args);
 int		ft_printf(const char *text, ...);
-
-
-
 #endif
