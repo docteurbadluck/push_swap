@@ -6,16 +6,37 @@
 /*   By: tdeliot <tdeliot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:21:12 by tdeliot           #+#    #+#             */
-/*   Updated: 2025/02/11 14:55:36 by tdeliot          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:24:02 by tdeliot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+# define T_STACK 1
+# define LES_STACKS 2
+# define NORMAL_WAY 1
+# define INVERT_WAY 0
 
-# include "libft.h"
+# include "libft/libft.h"
 # include <limits.h>
 # include <stdio.h>
+
+typedef struct s_stack
+{
+	int				value;
+	int				pos;
+	int				invert_pos;
+	int				index;
+	int				dest;
+	int				type_of_way_a;
+	int				type_of_way_b;
+	int				nbr_move;
+	int				nbr_move_a;
+	int				nbr_move_b;
+	struct s_stack	*previous;
+	struct s_stack	*next;
+}		t_stack;
+
 
 typedef struct s_compare
 {
@@ -30,6 +51,14 @@ typedef struct s_compare
 	int			compare_matrice[2][3];
 	long long	sum_matrice[3];
 }	t_compare;
+
+typedef struct s_comparator
+{
+	t_list		*first_a_card;
+	t_list		*first_b_card;
+	int			size_a_stack;
+	int			size_b_stack;
+}	t_comparator;
 
 //input_handler.c
 int			ft_check_input(int argc, char **argv, t_list **arg_list);
@@ -60,61 +89,96 @@ int			ft_count_chunk(void *s);
 int			ft_check_sign(char *ptr, int flag_sign);
 
 //move.c
-int			ft_swap(t_list **top);
-int			ft_rotate(t_list **top);
-int			ft_reverse_rotate(t_list **top);
-int			ft_push(t_list **src, t_list **dest);
-void		pa(t_list **b, t_list **a);
+int			ft_swap(t_stack **top);
+int			ft_rotate(t_stack **top);
+int			ft_reverse_rotate(t_stack **top);
+int			ft_push(t_stack **src, t_stack **dest);
+void		pa(t_stack **b, t_stack **a);
+void	last_pa(t_stack **b, t_stack **a);
 
 //move_2.c
-void		sa(t_list **a);
-void		sb(t_list **b);
-void		ra(t_list **a);
-void		rb(t_list **b);
-void		ss(t_list **a, t_list **b);
+void		sa(t_stack **a);
+void		sb(t_stack **b);
+void		ra(t_stack **a);
+void		rb(t_stack **b);
+void		ss(t_stack **a, t_stack **b);
 
 //move_3.c
-void		rr(t_list **a, t_list **b);
-void		rra(t_list **a);
-void		rrb(t_list **b);
-void		rrr(t_list **a, t_list **b);
-void		pb(t_list **a, t_list **b);
+void		rr(t_stack **a, t_stack **b);
+void		rra(t_stack **a);
+void		rrb(t_stack **b);
+void		rrr(t_stack **a, t_stack **b);
+void		pb(t_stack **a, t_stack **b);
 
-//sort.c
-void		ft_which_sort(t_list **a, t_list **b, t_compare **comparator);
-int			ft_is_sorted(t_list *a);
-void		ft_sort_2(t_list **a);
-void		ft_sort_3(t_list **a);
-void		ft_sort_3_2(t_list **a, int *pos1, int *pos2, int *pos3);
+//sort_1.c
+void		ft_which_sort(t_stack **a, t_stack **b);
+int			ft_is_sorted(t_stack *a);
+void		ft_sort_2(t_stack **a);
+void		ft_sort_3(t_stack **a);
+void	ft_sort_3_2(t_stack **a, int pos1, int pos2, int pos3);
 
 //sort_2.c
-void		ft_push_back_everything(t_list **a, t_list **b);
-void		ft_order_last_card(t_list **a, t_list **b, t_compare **comparator);
-void		ft_handle_compare_matrice(t_compare **comparator);
-void		ft_handle_compare_matrice_part_1(t_compare **comparator);
-void		ft_handle_compare_matrice_part_2(t_compare **comparator);
+int			ft_sort_4(t_stack **a, t_stack **b);
+int			ft_sort_5(t_stack **a, t_stack **b);
 
-//sort_3.c
-void		ft_sort_full_packet(t_list **a, t_list **b, t_compare **comparator);
-t_compare	*ft_init_stack(t_list **a, t_list **b);
-t_compare	*ft_new_comparator(t_list *a);
-void		ft_maj_comparator(t_list *a, t_list *b,
-				t_compare **comparator);
-void		ft_send_correct_card(t_list **a, t_list **b,
-				t_compare **comparator);
 
-//sort_4.c
-void		ft_compare_matrice_sum(t_compare **comparator);
-int			ft_which_card(t_compare *comparator);
-void		ft_order_b_stack(t_compare **comparator, t_list **b);
-int			ft_count_card(t_compare *comparator);
-int			ft_best_way(t_compare *comparator);
+// double_linked_list.c
 
-//sort_5.c
-int			ft_sort_4(t_list **a, t_list **b);
-int			ft_sort_5(t_list **a, t_list **b);
-void		ft_ascend_sort(int nb_carte, int stamp, t_list **b);
-void		ft_reverse_sort(int nb_carte_old, t_list **b,
-				t_compare **comparator);
+void	lst_push_back_double(t_stack **start, int data);
+void list_clear_double(t_stack *start);
+t_stack	*lstlast_double(t_stack *lst);
+int	lstsize_double(t_stack *lst);
+int	ft_how_many_superior_stack(t_stack *a, t_stack *start);
+
+void refresh_pos(t_stack *a);
+
+void sort_full_packet(t_stack **a, t_stack **b);
+
+//	***print_any_list.c***
+void	print_any_list(void *list, int type);
+
+//	***init_stack.c
+t_stack	*init_a(t_list *arg);
+void init_index(t_stack *a);
+void refresh_invert_pos(t_stack *a);
+
+
+//	***algo_utils.c
+int higher_index(t_stack *b);
+t_stack *get_biggest_node(t_stack *b);
+int lower_index(t_stack *b);
+
+//	***calcule_destination.c
+int	calcule_destination(t_stack *a, t_stack *b);
+
+//	***choose_sens.c
+int	choose_sens(t_stack *a, t_stack *b);
+int	choose_sens_a(t_stack *a, t_stack *b);
+
+//	***nbr_moove.c
+int	nbr_moove(t_stack *a, t_stack *b);
+
+//	***refresh_stack_moove.c
+void	refresh_stack_moove(t_stack *a, t_stack *b);
+
+//	***send_correct_number.c
+void send_correct_number(t_stack **a, t_stack **b);
+
+//	***sort_3.c
+void	ft_sort_3_rev(t_stack **a);
+
+void	print_les_stack(t_stack *a, t_stack *b );
+
+void rotate_b(t_stack **b);
+
+t_stack *higher_index_node(t_stack *a);
+
+//	***push_back.c
+void push_back(t_stack **b ,t_stack **a);
+
+
+
+
+
 
 #endif

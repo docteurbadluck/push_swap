@@ -1,98 +1,63 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_2.c                                           :+:      :+:    :+:   */
+/*   sort_5.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdeliot <tdeliot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/14 16:17:34 by tdeliot           #+#    #+#             */
-/*   Updated: 2025/01/14 16:34:36 by tdeliot          ###   ########.fr       */
+/*   Created: 2025/01/14 16:36:35 by tdeliot           #+#    #+#             */
+/*   Updated: 2025/02/12 18:26:32 by tdeliot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_push_back_everything(t_list **a, t_list **b)
-{
-	int	nbr;
 
-	nbr = ft_lstsize(*b);
-	while (nbr > 0)
+int	ft_sort_4(t_stack **a, t_stack **b)
+{
+	int	i;
+
+	i = lstsize_double(*a);
+	while (i)
 	{
-		pa(b, a);
-		nbr--;
+		if (ft_how_many_superior_stack(*a, *a) < 2)
+			ra(a);
+		else
+		{
+			pb(a, b);
+			break ;
+		}
 	}
+	ft_sort_3(a);
+	pa(b, a);
+	if (!ft_is_sorted(*a))
+		sa(a);
+	return (0);
 }
 
-void	ft_order_last_card(t_list **a, t_list **b, t_compare **comparator)
+int	ft_sort_5(t_stack **a, t_stack **b)
 {
-	pb(a, b);
-	(*comparator)->first_b_card = *b;
-	(*comparator)->second_b_card = (*b)->next;
-	(*comparator)->size_b_stack = ft_lstsize(*b);
-	ft_order_b_stack(comparator, b);
-	*a = NULL;
-}
+	int	i;
+	int	flag;
 
-void	ft_handle_compare_matrice(t_compare **comparator)
-{
-	ft_handle_compare_matrice_part_1(comparator);
-	ft_handle_compare_matrice_part_2(comparator);
-	ft_compare_matrice_sum(comparator);
-}
-
-void	ft_handle_compare_matrice_part_1(t_compare **comparator)
-{
-	if ((*comparator)->first_a_card && (*comparator)->first_b_card)
+	flag = 0;
+	i = lstsize_double(*a);
+	while (i)
 	{
-		(*comparator)->compare_matrice[0][0] = *(int *)(*comparator)
-			->first_a_card->content - *(int *)(*comparator)
-			->first_b_card->content;
+		if (ft_how_many_superior_stack(*a, *a) < 3)
+			ra(a);
+		else
+		{
+			pb(a, b);
+			if (flag == 1)
+				break ;
+			flag = 1;
+		}
 	}
-	else
-		(*comparator)->compare_matrice[0][0] = INT_MAX;
-	if ((*comparator)->second_a_card && (*comparator)->first_b_card)
-	{
-		(*comparator)->compare_matrice[0][1] = *(int *)(*comparator)
-			->second_a_card->content - *(int *)(*comparator)
-			->first_b_card->content;
-	}
-	else
-		(*comparator)->compare_matrice[0][1] = INT_MAX;
-	if ((*comparator)->last_a_card && (*comparator)->first_b_card)
-	{
-		(*comparator)->compare_matrice[0][2] = *(int *)(*comparator)
-			->last_a_card->content - *(int *)(*comparator)
-			->first_b_card->content;
-	}
-	else
-		(*comparator)->compare_matrice[0][1] = INT_MAX;
-}
-
-void	ft_handle_compare_matrice_part_2(t_compare **comparator)
-{
-	if (((*comparator)->first_a_card && (*comparator)->last_b_card))
-	{
-		(*comparator)->compare_matrice[1][0] = *(int *)(*comparator)
-			->first_a_card->content - *(int *)(*comparator)
-			->last_b_card->content;
-	}
-	else
-		(*comparator)->compare_matrice[1][0] = INT_MAX;
-	if (((*comparator)->second_a_card && (*comparator)->last_b_card))
-	{
-		(*comparator)->compare_matrice[1][1] = *(int *)(*comparator)
-			->second_a_card->content - *(int *)(*comparator)
-			->last_b_card->content;
-	}
-	else
-		(*comparator)->compare_matrice[1][1] = INT_MAX;
-	if ((*comparator)->second_a_card && (*comparator)->last_b_card)
-	{
-		(*comparator)->compare_matrice[1][2] = *(int *)(*comparator)
-			->last_a_card->content - *(int *)(*comparator)
-			->last_b_card->content;
-	}
-	else
-		(*comparator)->compare_matrice[1][2] = INT_MAX;
+	ft_sort_3(a);
+	if ((*b)->value < (*b)->next->value)
+		sb(b);
+	pa(b, a);
+	pa(b, a);
+	return (1);
 }

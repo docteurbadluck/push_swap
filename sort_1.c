@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   sort_1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdeliot <tdeliot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:28:31 by tdeliot           #+#    #+#             */
-/*   Updated: 2025/01/15 09:58:35 by tdeliot          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:55:18 by tdeliot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_is_sorted(t_list *a)
+int	ft_is_sorted(t_stack *a)
 {
-	t_list	*current;
-	t_list	*iterator;
-	int		*value;
-	int		*comparator;
+	t_stack	*current;
+	t_stack	*iterator;
+	int		value;
+	int		comparator;
 
 	current = a;
 	iterator = current->next;
@@ -25,9 +25,9 @@ int	ft_is_sorted(t_list *a)
 	{
 		while (iterator != NULL)
 		{
-			value = current->content;
-			comparator = iterator->content;
-			if (*value > *comparator)
+			value = current->value;
+			comparator = iterator->value;
+			if (value > comparator)
 				return (0);
 			iterator = iterator->next;
 		}
@@ -37,40 +37,27 @@ int	ft_is_sorted(t_list *a)
 	return (1);
 }
 
-void	ft_sort_2(t_list **a)
+void	ft_sort_2(t_stack **a)
 {
-	t_list	*first;
-	int		*value;
-	int		*comparator;
+	t_stack	*first;
 
 	first = *a;
-	value = first->content;
-	comparator = first->next->content;
-	if (*value > *comparator)
+	if (first->value > first->next->value)
 		sa(a);
 	return ;
 }
 
-void	ft_attribute(t_list **a, int **pos1,
-				int **pos2, int **pos3)
+void	ft_sort_3(t_stack **a)
 {
-	*pos1 = ((*a)->content);
-	*pos2 = (*a)->next->content;
-	*pos3 = (*a)->next->next->content;
-}
+	int		pos1 = ((*a)->value);
+	int		pos2 = (*a)->next->value;
+	int		pos3 = (*a)->next->next->value;
 
-void	ft_sort_3(t_list **a)
-{
-	int		*pos1;
-	int		*pos2;
-	int		*pos3;
-
-	ft_attribute(a, &pos1, &pos2, &pos3);
 	if (ft_is_sorted(*a))
 		return ;
-	if ((*pos1 < *pos2))
+	if ((pos1 < pos2))
 	{
-		if (*pos1 < *pos3)
+		if (pos1 < pos3)
 		{
 			ra(a);
 			sa(a);
@@ -84,19 +71,21 @@ void	ft_sort_3(t_list **a)
 	return ;
 }
 
-void	ft_sort_3_2(t_list **a, int *pos1, int *pos2, int *pos3)
+void	ft_sort_3_2(t_stack **a, int pos1, int pos2, int pos3)
 {
-	if (*pos1 > *pos2 && *pos1 < *pos3)
+	if (pos1 > pos2 && pos1 < pos3)
 	{
 		sa(a);
 		return ;
 	}
-	if ((*pos1 > *pos2) && (*pos1 > *pos3))
+	if ((pos1 > pos2) && (pos1 > pos3))
 	{
 		ra(a);
-		if (*pos2 > *pos3)
+		if (pos2 > pos3)
 			sa(a);
 		return ;
 	}
 	return ;
 }
+
+

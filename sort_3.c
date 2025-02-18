@@ -5,100 +5,71 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdeliot <tdeliot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/14 16:34:46 by tdeliot           #+#    #+#             */
-/*   Updated: 2025/02/11 14:54:06 by tdeliot          ###   ########.fr       */
+/*   Created: 2025/02/17 15:15:17 by tdeliot           #+#    #+#             */
+/*   Updated: 2025/02/18 15:56:45 by tdeliot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_sort_full_packet(t_list **a, t_list **b, t_compare **comparator)
+int	ft_is_sorted_rev(t_stack *a);
+void	ft_sort_3_2_rev(t_stack **a, int pos1, int pos2, int pos3);
+
+
+void	ft_sort_3_rev(t_stack **b)
 {
-	*comparator = ft_init_stack(a, b);
-	ft_maj_comparator(*a, *b, comparator);
-	while ((*comparator)->size_a_stack > 1)
+	int		pos1 = ((*b)->value);
+	int		pos2 = (*b)->next->value;
+	int		pos3 = (*b)->next->next->value;
+
+	if (pos1 > pos2 && pos2 > pos3)
+		{
+			return ;
+		}
+	if ((pos1 > pos2))
 	{
-		ft_send_correct_card(a, b, comparator);
-		ft_order_b_stack(comparator, b);
-		ft_maj_comparator(*a, *b, comparator);
+		if (pos1 > pos3)
+		{
+			rb(b);
+			sb(b);
+			rrb(b);
+		}
+		else
+			rrb(b);
+		return ;
 	}
-	ft_order_last_card(a, b, comparator);
-	ft_push_back_everything(a, b);
+	ft_sort_3_2_rev(b, pos1, pos2, pos3);
 	return ;
 }
 
-t_compare	*ft_init_stack(t_list **a, t_list **b)
+void	ft_sort_3_2_rev(t_stack **b, int pos1, int pos2, int pos3)
 {
-	t_compare	*new;
-	int			value_first;
-	int			value_second;
-
-	new = ft_new_comparator(*a);
-	value_first = *(int *)new->first_a_card->content;
-	value_second = *(int *)new->second_a_card->content;
-	if (value_first < value_second)
+	if (pos1 < pos2 && pos1 > pos3)
 	{
-		pb(a, b);
-		pb(a, b);
-	}
-	else
-	{
-		sa(a);
-		pb(a, b);
-		pb(a, b);
-	}
-	ft_maj_comparator(*a, *b, &new);
-	return (new);
-}
-
-t_compare	*ft_new_comparator(t_list *a)
-{
-	t_compare	*new;
-
-	new = malloc(sizeof(t_compare));
-	if (!new)
-		return (NULL);
-	new->first_a_card = a;
-	new->second_a_card = a->next;
-	new->last_a_card = ft_lstlast(a);
-	new->size_a_stack = ft_lstsize(a);
-	return (new);
-}
-
-void	ft_maj_comparator(t_list *a, t_list *b, t_compare **comparator)
-{
-	(*comparator)->first_a_card = a;
-	(*comparator)->second_a_card = a->next;
-	(*comparator)->last_a_card = ft_lstlast(a);
-	(*comparator)->first_b_card = b;
-	(*comparator)->second_b_card = b->next;
-	(*comparator)->last_b_card = ft_lstlast(b);
-	(*comparator)->size_a_stack = ft_lstsize(a);
-	(*comparator)->size_b_stack = ft_lstsize(b);
-	if ((*comparator)->size_a_stack)
-		ft_handle_compare_matrice(comparator);
-}
-
-void	ft_send_correct_card(t_list **a, t_list **b, t_compare **comparator)
-{
-	if (ft_which_card(*comparator) == 0)
-	{
-		pb(a, b);
-		ft_maj_comparator(*a, *b, comparator);
+		sb(b);
 		return ;
 	}
-	if (ft_which_card(*comparator) == 1)
+	if ((pos1 < pos2) && (pos1 < pos3))
 	{
-		sa(a);
-		pb(a, b);
-		ft_maj_comparator(*a, *b, comparator);
+		rb(b);
+		if (pos2 < pos3)
+			sb(b);
 		return ;
 	}
-	if (ft_which_card(*comparator) == 2)
+	return ;
+}
+
+
+int ft_is_sorted_rev(t_stack *b)
+{
+	t_stack *current = b;
+
+	while (current && current->next)
 	{
-		rra(a);
-		pb(a, b);
-		ft_maj_comparator(*a, *b, comparator);
-		return ;
+		if (current->value < current->next->value)
+			return (0);
+		current = current->next;
 	}
+
+	return (1);
 }

@@ -6,19 +6,18 @@
 /*   By: tdeliot <tdeliot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:00:38 by tdeliot           #+#    #+#             */
-/*   Updated: 2025/01/14 16:23:15 by tdeliot          ###   ########.fr       */
+/*   Updated: 2025/02/11 15:57:42 by tdeliot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <stddef.h>  
+# include <stddef.h>
 # include <unistd.h>
-# include <stdlib.h> 
-# include <stdint.h>
-# include <errno.h>
+# include <stdlib.h>
 # include <stdarg.h>
+# include "ft_printf.h"
 
 typedef struct s_list
 {
@@ -69,20 +68,13 @@ t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 int		ft_lstsize(t_list *lst);
-extern int		g_count;
-//ft_printf_utils
-void	ft_putnbr(int n);
-void	ft_putnbr_u(unsigned int n);
-void	ft_putnbr_to_hex_maj(unsigned int n);
-void	ft_putnbr_to_hex_min(unsigned int n);
+int		ft_printf(const char *format, ...);
+int		ft_putchar(int c);
+int		ft_putnumber(long n, int base);
+int		ft_putnumber_caps(long n, int base);
+int		print_format(char specifier, va_list ap);
+int		ft_putunit_max(unsigned long num, int base);
+int		ft_putpointer(void *pointer);
+int		ft_putstring(char *str);
 
-//ft_printf_utils_2
-void	ft_putchar(char c);
-void	ft_putstr( char *s);
-void	ft_put_ptr(unsigned long long num);
-void	ft_putptr(unsigned long long ptr);
-
-//ft_printf.c
-void	ft_manage_arg(char c, va_list args);
-int		ft_printf(const char *text, ...);
 #endif

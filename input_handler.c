@@ -6,7 +6,7 @@
 /*   By: tdeliot <tdeliot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:07:20 by tdeliot           #+#    #+#             */
-/*   Updated: 2025/01/14 17:35:54 by tdeliot          ###   ########.fr       */
+/*   Updated: 2025/02/12 16:24:20 by tdeliot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_check_input(int argc, char **argv, t_list **arg_list)
 	if (argc < 2)
 	{
 		ft_print_error();
-		return (0);
+		return (-1);
 	}
 	while (i < argc)
 	{
@@ -31,11 +31,14 @@ int	ft_check_input(int argc, char **argv, t_list **arg_list)
 	{
 		ft_lstclear(arg_list, &ft_lstdel);
 		ft_print_error();
-		return (0);
+		return (-1);
 	}
 	if (!ft_check_input_2(argc, argv, arg_list))
-		return (0);
-	return (1);
+		return (-1);
+	*arg_list = ft_allocate_check(arg_list);
+	if (!arg_list)
+		return (-1);
+	return (0);
 }
 
 int	ft_check_input_2(int argc, char **argv, t_list **arg_list)
