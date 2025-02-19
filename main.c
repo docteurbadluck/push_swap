@@ -6,7 +6,7 @@
 /*   By: tdeliot <tdeliot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:58:21 by tdeliot           #+#    #+#             */
-/*   Updated: 2025/02/19 10:30:01 by tdeliot          ###   ########.fr       */
+/*   Updated: 2025/02/19 11:57:13 by tdeliot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void sort_full_packet(t_stack **a, t_stack **b)
 	refresh_stack_moove(*a, *b);
 	send_correct_number(a, b);
 	list_size = lstlast_double(*a)->pos;
+
+	//print_les_stack(*a, *b);
 	}
 	rotate_b(b);
 	ft_sort_5(a,b);

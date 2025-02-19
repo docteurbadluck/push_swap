@@ -6,7 +6,7 @@
 /*   By: tdeliot <tdeliot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:21:12 by tdeliot           #+#    #+#             */
-/*   Updated: 2025/02/18 15:24:02 by tdeliot          ###   ########.fr       */
+/*   Updated: 2025/02/19 11:12:10 by tdeliot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_stack
 	int				nbr_move;
 	int				nbr_move_a;
 	int				nbr_move_b;
+	int				nbr_move_c;
 	struct s_stack	*previous;
 	struct s_stack	*next;
 }		t_stack;

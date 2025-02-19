@@ -6,7 +6,7 @@
 /*   By: tdeliot <tdeliot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 10:48:39 by tdeliot           #+#    #+#             */
-/*   Updated: 2025/02/17 12:19:47 by tdeliot          ###   ########.fr       */
+/*   Updated: 2025/02/19 11:12:23 by tdeliot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_stack	*init_a(t_list *arg)
 		lstlast_double(new)->invert_pos = 0;
 		lstlast_double(new)->type_of_way_a = 0;
 		lstlast_double(new)->type_of_way_b = 0;
+		lstlast_double(new)->nbr_move_c = 0;
 
 		i++;
 		ptr = ptr->next;
