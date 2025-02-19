@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_5.c                                           :+:      :+:    :+:   */
+/*   sort_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdeliot <tdeliot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:36:35 by tdeliot           #+#    #+#             */
-/*   Updated: 2025/02/12 18:26:32 by tdeliot          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:10:52 by tdeliot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_sort_4(t_stack **a, t_stack **b)
 		}
 	}
 	ft_sort_3(a);
-	pa(b, a);
+	last_pa(b, a);
 	if (!ft_is_sorted(*a))
 		sa(a);
 	return (0);
@@ -57,7 +57,7 @@ int	ft_sort_5(t_stack **a, t_stack **b)
 	ft_sort_3(a);
 	if ((*b)->value < (*b)->next->value)
 		sb(b);
-	pa(b, a);
-	pa(b, a);
+	last_pa(b, a);
+	last_pa(b, a);
 	return (1);
 }

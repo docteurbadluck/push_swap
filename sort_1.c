@@ -6,7 +6,7 @@
 /*   By: tdeliot <tdeliot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:28:31 by tdeliot           #+#    #+#             */
-/*   Updated: 2025/02/18 15:55:18 by tdeliot          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:18:54 by tdeliot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,8 @@ void	ft_sort_3(t_stack **a)
 	{
 		if (pos1 < pos3)
 		{
-			ra(a);
-			sa(a);
 			rra(a);
+			sa(a);
 		}
 		else
 			rra(a);

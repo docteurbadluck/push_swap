@@ -6,7 +6,7 @@
 /*   By: tdeliot <tdeliot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:58:21 by tdeliot           #+#    #+#             */
-/*   Updated: 2025/02/18 15:56:21 by tdeliot          ###   ########.fr       */
+/*   Updated: 2025/02/19 10:30:01 by tdeliot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ int	main(int argc, char **argv)
 	b = NULL;
 	arg = NULL;
 	if (ft_check_input(argc, argv, &arg))
+	{
 		return (-1);
+	}
+	if (arg == NULL)
+		return 1;
 	a = init_a(arg);
 	ft_which_sort( &a, &b);
 	list_clear_double(a);
@@ -48,12 +52,7 @@ void	ft_which_sort(t_stack **a, t_stack **b)
 		ft_sort_5(a, b);
 	if (lstsize_double(*a) > 5)
 		sort_full_packet(a, b);
-
 }
-
-
-
-
 
 void sort_full_packet(t_stack **a, t_stack **b)
 {
@@ -63,15 +62,14 @@ void sort_full_packet(t_stack **a, t_stack **b)
 	pb(a,b);
 	pb(a, b);
 	ft_sort_3_rev(b);
-	while (list_size > 2)
+	while (list_size > 4)
 	{
 	refresh_stack_moove(*a, *b);
 	send_correct_number(a, b);
-
 	list_size = lstlast_double(*a)->pos;
 	}
 	rotate_b(b);
-	ft_sort_3(a);
+	ft_sort_5(a,b);
 	push_back(b ,a);
 	//print_les_stack(*a, *b);
 }
