@@ -4,6 +4,11 @@ Projet de l'école 42 — trier une pile de nombres entiers en utilisant un ense
 
 **Score obtenu : 100/100**
 
+## Visualizer from https://github.com/o-reo/push_swap_visualizer
+
+<img width="1200" height="675" alt="output" src="https://github.com/user-attachments/assets/a2321987-760f-439e-8a65-207498bc003a" />
+
+
 ---
 
 ## Principe
